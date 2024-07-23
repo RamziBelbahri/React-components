@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Rating.css';
 
 const Rating = (props) => {
     const emptyIcon =  '/icons/stars/empty.svg';
     const filledIcon =  '/icons/stars/filled.svg';
     const halfFilledIcon =  '/icons/stars/half.svg';
+    const [value, setValue] = useState(props.value ? props.value : 0);
+    let steps = props.steps;
 
     // Utility function to calculate if the mouse event happened on the left side of the target or the right side.
     const isLessThanHalf = (event) => {
@@ -15,15 +17,32 @@ const Rating = (props) => {
         return mouseAt <= boundingClientRect.width / 2;
     };
 
-    const setValue = (value) => {
-        for(let i = 0 ; i < value; i++) {
-            console.log(i);
+    const setStarValue = (starValue) => {
+        setValue(starValue);
+        console.log(value);
+    }
+
+    const onImageSelect = (starValue) => {
+
+        if(starValue === value && isLessThanHalf) {
+            return halfFilledIcon;
+        }
+        if(starValue === value && !isLessThanHalf) {
+            return filledIcon;
+        }
+        if(starValue < value) 
+        {
+            return filledIcon;
+        }
+        if(starValue > value ) 
+        {
+            return emptyIcon;
         }
     }
 
-    const renderSymbol = () => {
+    const renderSymbol = (starValue) => {
         return (
-            <img src={emptyIcon}
+            <img /*src={(starValue <= value) ? filledIcon : emptyIcon}*/ src={onImageSelect(starValue)}
                  className="rating-image"
                  data-testid="rating-icon"
                  alt="Rate"/>
@@ -33,53 +52,53 @@ const Rating = (props) => {
     return (
         <div className={"flex"}>
         <div
-            onClick={setValue(0)}
+            onClick={() => setStarValue(0)}
             tabIndex="0"
             className="star-rating"
             data-testid="star-rating-container"
         >
             {
-                renderSymbol()
+                renderSymbol(0)
             }
         </div>
         <div
-            onClick={setValue(1)}
+            onClick={() => setStarValue(1)}
             tabIndex="1"
             className="star-rating"
             data-testid="star-rating-container"
         >
             {
-                renderSymbol()
+                renderSymbol(1)
             }
         </div>
         <div
-            onClick={setValue(2)}
+            onClick={() => setStarValue(2)}
             tabIndex="2"
             className="star-rating"
             data-testid="star-rating-container"
         >
             {
-                renderSymbol()
+                renderSymbol(2)
             }
         </div>
         <div
-            onClick={setValue(3)}
+            onClick={() => setStarValue(3)}
             tabIndex="3"
             className="star-rating"
             data-testid="star-rating-container"
         >
             {
-                renderSymbol()
+                renderSymbol(3)
             }
         </div>
         <div
-            onClick={setValue(4)}
+            onClick={() => setStarValue(4)}
             tabIndex="4"
             className="star-rating"
             data-testid="star-rating-container"
         >
             {
-                renderSymbol()
+                renderSymbol(4)
             }
         </div>
         </div>
