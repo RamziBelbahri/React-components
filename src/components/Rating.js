@@ -15,9 +15,15 @@ const Rating = (props) => {
         return mouseAt <= boundingClientRect.width / 2;
     };
 
+    const setValue = (value) => {
+        for(let i = 0 ; i < value; i++) {
+            console.log(i);
+        }
+    }
+
     const renderSymbol = () => {
         return (
-            <img src=""
+            <img src={emptyIcon}
                  className="rating-image"
                  data-testid="rating-icon"
                  alt="Rate"/>
@@ -25,7 +31,9 @@ const Rating = (props) => {
     }
 
     return (
+        <div className={"flex"}>
         <div
+            onClick={setValue(0)}
             tabIndex="0"
             className="star-rating"
             data-testid="star-rating-container"
@@ -33,6 +41,47 @@ const Rating = (props) => {
             {
                 renderSymbol()
             }
+        </div>
+        <div
+            onClick={setValue(1)}
+            tabIndex="1"
+            className="star-rating"
+            data-testid="star-rating-container"
+        >
+            {
+                renderSymbol()
+            }
+        </div>
+        <div
+            onClick={setValue(2)}
+            tabIndex="2"
+            className="star-rating"
+            data-testid="star-rating-container"
+        >
+            {
+                renderSymbol()
+            }
+        </div>
+        <div
+            onClick={setValue(3)}
+            tabIndex="3"
+            className="star-rating"
+            data-testid="star-rating-container"
+        >
+            {
+                renderSymbol()
+            }
+        </div>
+        <div
+            onClick={setValue(4)}
+            tabIndex="4"
+            className="star-rating"
+            data-testid="star-rating-container"
+        >
+            {
+                renderSymbol()
+            }
+        </div>
         </div>
     )
 };
