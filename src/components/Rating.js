@@ -14,6 +14,7 @@ const Rating = (props) => {
         const boundingClientRect = target.getBoundingClientRect();
         let mouseAt = event.clientX - boundingClientRect.left;
         mouseAt = Math.round(Math.abs(mouseAt));
+        console.log(mouseAt <= boundingClientRect.width / 2);
         return mouseAt <= boundingClientRect.width / 2;
     };
 
