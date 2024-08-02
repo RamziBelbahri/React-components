@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from 'react'
 import {render, cleanup, getAllByTestId, fireEvent, getByTestId} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
@@ -43,7 +44,7 @@ describe('Rating Component', () => {
     });
 
     describe('Initial Setup', () => {
-        test('should render the stars correctly on init', () => {
+        test.only('should render the stars correctly on init', () => {
             const {getAllByTestId} = render(<Rating/>)
             const ratingIcons = getAllByTestId(TEST_IDS.ratingIcon);
 

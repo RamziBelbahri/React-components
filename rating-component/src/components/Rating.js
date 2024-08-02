@@ -19,23 +19,23 @@ const Rating = (props) => {
     };
 
     const setStarValue = (starValue) => {
-        setValue(starValue);
-        console.log(value);
+        setValue(starValue+1);
+        console.log("new value: ", value);
     }
 
-    const onImageSelect = (starValue) => {
+    const onStarSelect = (starValue) => {
 
-        if(starValue === value && isLessThanHalf) {
-            return halfFilledIcon;
-        }
-        if(starValue === value && !isLessThanHalf) {
-            return filledIcon;
+        let valueDiff = starValue - value;
+
+        switch(true) {
+
+
         }
         if(starValue < value) 
         {
             return filledIcon;
         }
-        if(starValue > value ) 
+        if(starValue >= value ) 
         {
             return emptyIcon;
         }
@@ -43,7 +43,7 @@ const Rating = (props) => {
 
     const renderSymbol = (starValue) => {
         return (
-            <img /*src={(starValue <= value) ? filledIcon : emptyIcon}*/ src={onImageSelect(starValue)}
+            <img src={onStarSelect(starValue)}
                  className="rating-image"
                  data-testid="rating-icon"
                  alt="Rate"/>
